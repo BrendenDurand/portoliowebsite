@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joseph Smith | Speaking Portfolio</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* --- Base Styles --- */
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; scroll-behavior: smooth; }
+body { line-height: 1.6; color: #333; background-color: #fff; }
+a { text-decoration: none; color: inherit; }
+
+/* --- Colors --- */
+:root {
+  --primary: #FF6700;
+  --secondary: #FFC080;
+  --black: #000;
+  --white: #fff;
+  --grey: #777;
+  --light-grey: #f5f5f5;
+  --lighter-grey: #f0f0f0;
+}
+
+/* --- Typography --- */
+h1, h2, h3 { font-weight: 700; }
+h1 { font-size: 3rem; }
+h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+h3 { font-size: 1.5rem; margin-bottom: 10px; }
+p { font-size: 1.1rem; color: var(--grey); }
+
+/* --- Navigation --- */
+nav {
+  position: fixed; top: 0; width: 100%; background: rgba(0,0,0,0.85);
+  display: flex; justify-content: center; gap: 25px; padding: 15px 0; z-index: 1000;
+}
+nav a { color: var(--white); font-weight: 600; transition: 0.3s; }
+nav a:hover { color: var(--primary); }
+
+/* --- Hero Section --- */
+header {
+  height: 100vh; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; text-align: center;
+  background: linear-gradient(135deg, #000000cc, #FF6700cc), url('https://images.unsplash.com/photo-1581092580490-6a6a2fc92477?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+  color: var(--white); padding: 0 20px; position: relative;
+}
+header h1 { animation: fadeIn 1.2s ease forwards; }
+header p { animation: fadeIn 1.5s ease forwards; max-width: 700px; margin-bottom: 2rem; }
+header a.button {
+  display: inline-block; padding: 0.8rem 2rem; background-color: var(--primary);
+  color: var(--white); border-radius: 5px; font-weight: bold; transition: 0.3s;
+  animation: fadeIn 1.8s ease forwards;
+}
+header a.button:hover { background-color: #e55a00; }
+
+/* --- Sections --- */
+section { padding: 80px 0; position: relative; }
+section h2 { text-align: center; color: var(--black); margin-bottom: 1rem; }
+section p { text-align: center; max-width: 700px; margin: 0 auto 2rem auto; }
+
+/* --- Alternating Backgrounds --- */
+#about { background-color: var(--white); }
+#keynotes { background-color: #FFF4E6; }
+#workshops { background-color: var(--white); }
+#talks { background-color: #F9F9F9; }
+
+/* --- Background Icons --- */
+#keynotes::before, #workshops::before, #talks::before {
+  content: ''; position: absolute; font-family: "Font Awesome 6 Free"; font-weight: 900;
+  font-size: 120px; opacity: 0.05;
+}
+#keynotes::before { content: "\f121"; top: 20px; left: 20px; color: var(--primary); }
+#workshops::before { content: "\f0eb"; top: 10px; right: 20px; color: var(--primary); }
+#talks::before { content: "\f085"; top: 30px; left: 50%; transform: translateX(-50%); color: var(--black); }
+
+/* --- Cards --- */
+.cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+.card {
+  background-color: var(--light-grey); padding: 30px; flex: 1 1 250px; border-radius: 10px;
+  text-align: center; transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+  position: relative; z-index: 1;
+}
+.card:hover { transform: translateY(-10px); box-shadow: 0 12px 25px rgba(0,0,0,0.15); background: var(--lighter-grey); }
+.card-icon { font-size: 3rem; color: var(--primary); margin-bottom: 15px; }
+
+/* --- Testimonials --- */
+.testimonial {
+  background-color: var(--lighter-grey); padding: 40px; border-radius: 10px;
+  margin: 20px auto; max-width: 600px; text-align: center; font-style: italic;
+  color: var(--black); transition: transform 0.3s;
+}
+.testimonial:hover { transform: scale(1.03); }
+
+/* --- Content Links --- */
+.content-links { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 30px; }
+.content-links a {
+  display: inline-block; padding: 12px 20px; border-radius: 5px;
+  background-color: var(--primary); color: var(--white); font-weight: 600; transition: 0.3s;
+}
+.content-links a:hover { background-color: #e55a00; }
+
+/* --- Contact Form --- */
+form { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
+form input, form textarea {
+  padding: 12px; border-radius: 5px; border: 1px solid var(--grey); font-size: 1rem; transition: border-color 0.3s;
+}
+form input:focus, form textarea:focus { border-color: var(--primary); outline: none; }
+form button { padding: 12px; border: none; background-color: var(--primary); color: var(--white);
+  font-weight: bold; border-radius: 5px; cursor: pointer; transition: 0.3s; }
+form button:hover { background-color: #e55a00; }
+
+/* --- Footer --- */
+footer { text-align: center; padding: 20px; background-color: var(--black); color: var(--white); margin-top: 50px; }
+footer a { color: var(--white); transition: 0.3s; }
+footer a:hover { color: var(--primary); }
+
+/* --- Animations --- */
+@keyframes fadeIn { 0% { opacity: 0; transform: translateY(20px);} 100% { opacity: 1; transform: translateY(0);} }
+
+/* --- Responsive --- */
+@media(max-width: 768px){
+  header h1 { font-size: 2.2rem; }
+  section h2 { font-size: 2rem; }
+  .cards { flex-direction: column; }
+  nav { gap: 15px; }
+  .content-links { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <a href="#about">About</a>
+  <a href="#keynotes">Keynotes</a>
+  <a href="#workshops">Workshops</a>
+  <a href="#talks">Talks</a>
+  <a href="#testimonials">Testimonials</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<!-- Hero Section -->
+<header>
+  <h1>Joseph Smith</h1>
+  <p>AI & Leadership Speaker | Helping schools and organizations unlock potential and inspire growth</p>
+  <a href="#contact" class="button">Book a Talk</a>
+</header>
+
+<!-- About Section -->
+<section id="about">
+  <div class="container">
+    <h2>About Me</h2>
+    <p>I'm a leadership and AI enthusiast with over 9 years of experience in tech and coaching. I deliver inspiring talks to schools and corporate teams, helping individuals and teams thrive in a rapidly changing world.</p>
+  </div>
+</section>
+
+<!-- Keynotes Section -->
+<section id="keynotes">
+  <div class="container">
+    <h2>Keynotes</h2>
+    <p>Engaging talks designed to inspire, motivate, and spark action.</p>
+    <div class="cards">
+      <div class="card"><div class="card-icon"><i class="fas fa-robot"></i></div>
+        <h3>AI in Education</h3><p>Exploring how AI is transforming learning and leadership in schools.</p>
+      </div>
+      <div class="card"><div class="card-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+        <h3>Leadership in a Digital Era</h3><p>Insights into modern leadership for teams navigating rapid change.</p>
+      </div>
+      <div class="card"><div class="card-icon"><i class="fas fa-briefcase"></i></div>
+        <h3>Future of Work</h3><p>How emerging technology will reshape careers and productivity.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Workshops Section -->
+<section id="workshops">
+  <div class="container">
+    <h2>Workshops</h2>
+    <p>Hands-on sessions designed to build skills and provide actionable takeaways.</p>
+    <div class="cards">
+      <div class="card"><div class="card-icon"><i class="fas fa-lightbulb"></i></div>
+        <h3>AI & Leadership Workshop</h3><p>Interactive exercises blending AI knowledge with leadership skill development.</p>
+      </div>
+      <div class="card"><div class="card-icon"><i class="fas fa-users"></i></div>
+        <h3>Team Productivity Boost</h3><p>Strategies for improving communication, workflow, and efficiency.</p>
+      </div>
+      <div class="card"><div class="card-icon"><i class="fas fa-pencil-ruler"></i></div>
+        <h3>Innovation & Creativity</h3><p>Workshops that encourage creative thinking and problem-solving.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Talks Section -->
+<section id="talks">
+  <div class="container">
+    <h2>Talks</h2>
+    <p>Short, impactful sessions for schools, events, and corporate gatherings.</p>
+    <div class="cards">
+      <div class="card"><div class="card-icon"><i class="fas fa-microphone"></i></div>
+        <h3>Motivational Talks</h3><p>Inspiring talks designed to energize audiences and spark action.</p>
+      </div>
+      <div class="card"><div class="card-icon"><i class="fas fa-brain"></i></div>
+        <h3>Leadership Insights</h3><p>Deep dives into modern leadership principles and personal growth.</p>
+      </div>
+      <div class="card"><div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
+        <h3>Student Engagement</h3><p>Focused talks for students to inspire motivation, purpose, and ambition.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section id="testimonials">
+  <div class="container">
+    <h2>Testimonials</h2>
+    <div class="testimonial">"Joseph's session transformed the way our team communicates. Highly recommended!" – Sarah L.</div>
+    <div class="testimonial">"Engaging, insightful, and motivating. Our staff loved the workshop." – Mark D.</div>
+  </div>
+</section>
+
+<!-- Content Links -->
+<section id="content">
+  <div class="container">
+    <h2>Follow My Work</h2>
+    <p>Check out my insights and articles on social media and blogs.</p>
+    <div class="content-links">
+      <a href="https://www.linkedin.com/in/josephsmith" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+      <a href="https://medium.com/@josephsmith" target="_blank"><i class="fab fa-medium"></i> Medium</a>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+  <div class="container">
+    <h2>Contact Me</h2>
+    <p>Reach out to discuss booking a talk or workshop.</p>
+    <form action="mailto:your-email@example.com" method="post" enctype="text/plain">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 Joseph Smith | All Rights Reserved</p>
+</footer>
+</body>
+</html>
